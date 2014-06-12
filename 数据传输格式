@@ -1,0 +1,8 @@
+规定数据包格式
+0A_START(start) NodeName 0A_END(End of Node Name) 0B_START Data Typechat[]s 0C_START Data Name 0D_START Data 0F0F
+
+DATA_TYPES:
+0-int
+1-float
+2-char
+3-string
