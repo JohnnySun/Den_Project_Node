@@ -15,7 +15,10 @@
 class io
 {
 		public:
-				
+				virtual int read(){return 0;};
+				virtual int read(int){return 0;};
+				virtual int write(int){return 0;};				
+
 				String node_name;
 				char byte;
 				String p_name;
