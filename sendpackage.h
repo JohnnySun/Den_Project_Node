@@ -18,8 +18,9 @@ class spackage
 				int init(String);
 				int send();
 		private:
+				enum type{int_t, char_t, float_t};
 				String p_name;
-				String p_type;
+				int p_type;
 				int i_data;
 				char c_data;
 				float f_data;

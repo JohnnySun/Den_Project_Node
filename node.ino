@@ -8,12 +8,12 @@
  */
 #include <dht11.h>
 #include "sendpackage.h"
-#include "io.h"
+#include "include/readserial.h"
 #include "ptthread/pt.h"
 
 dht11 DHT11;
 spackage pack;
-io reads;
+readserial reads;
 
 #define DHT11PIN 2
 double Fahrenheit(double celsius) 
@@ -91,7 +91,7 @@ static int serialread(struct pt *pt)
 		PT_BEGIN(pt);
 		while(1)
 		{
-				PT_WAIT_UNTIL(pt, reads.readserial());
+				PT_WAIT_UNTIL(pt, reads.read());
 				//read = Serial.read();
 				//Serial.println(read);
 				Serial.println(" thread2\n");
