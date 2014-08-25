@@ -1,5 +1,6 @@
-#ifndef sendpackage_h
-#define sendpackage_h
+#ifndef io_h
+#define io_h
+
 #define NODE_NAME "node1"
 #if defined(ARDUINO) && (ARDUINO >= 100)
 #include <Arduino.h>
@@ -7,17 +8,19 @@
 #include <WProgram.h>
 #endif
 
-#define SENDPACKAGE_VERSION "0.0.1"
+#define IO_VERSION "0.0.1"
 
-class spackage
+#include <nobject.h>
+
+class io : public nobject
 {
 		public:
-				int write(int *);
-				int write(float *);
-				int write(char *);
-				int init(String);
-				int send();
+				io();
+				//int read(int pin);
+				int readserial();
+				//int wirte(int pin,);
 		private:
+				char c;
 				String p_name;
 				String p_type;
 				int i_data;
@@ -25,3 +28,6 @@ class spackage
 				float f_data;
 };
 #endif
+//
+// END OF FILE
+//

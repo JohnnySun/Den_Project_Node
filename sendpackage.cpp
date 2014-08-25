@@ -1,50 +1,45 @@
 #include "sendpackage.h"
 
-int spackage::init()
+int spackage::init(String name)
 {
-		buffer = "0A_START";
-		buffer = buffer + NODE_NAME;
-		buffer = buffer + "0A_END";
+		p_name = name;
+		p_name += "#end";
 		return 0;
 }
 
-int spackage::write(char *name, int *data) {
-		String temp = String(*data);
-		buffer = buffer + "0B_START";
-		buffer = buffer + "int";
-		buffer = buffer + "0C_START";
-		buffer = buffer + name;
-		buffer = buffer + "0D_Start";
-		buffer = buffer + temp;
-		buffer = buffer + "0F0F";
+int spackage::write(int *data) {
+		p_type = "int";
+		i_data = *data;
 		return 0;
 }
 
-int spackage::write(char *name, float *data) {
-		String temp = String((int)*data);
-		buffer = buffer + "0B_START";
-		buffer = buffer + "float";
-		buffer = buffer + "0C_START";
-		buffer = buffer + name;
-		buffer = buffer + "0D_Start";
-		buffer = buffer + temp;
-		buffer = buffer + "0F0F";
+int spackage::write(float *data) {
+		p_type = "float";
+		f_data = *data;
 		return 0;
 }
 
-int spackage::write(char *name, char *data) {
-		buffer = buffer + "0B_START";
-		buffer = buffer + "string";
-		buffer = buffer + "0C_START";
-		buffer = buffer + name;
-		buffer = buffer + "0D_Start";
-		buffer = buffer + data;
-		buffer = buffer + "0F0F";
+int spackage::write(char *data) {
+		p_type = "char";
+		c_data = *data;
 		return 0;
 }
 
 int spackage::send() {
-		Serial.print(buffer);
+		Serial.print(NODE_NAME);
+		Serial.println();
+		Serial.print(p_type);
+		Serial.println();
+		Serial.print(p_name);
+		Serial.println();
+		if(p_type.equals("int"))
+						Serial.print(i_data);
+		if(p_type.equals("char"))
+						Serial.print(c_data);
+		if(p_type.equals("float"))
+						Serial.print(f_data);
+		Serial.println();
+		Serial.print("#EOF");
 		Serial.println();
 		return 0;
 }
