@@ -1,8 +1,5 @@
-规定数据包格式
-0A_START(start) NodeName 0A_END(End of Node Name) 0B_START Data Types 0C_START Data Name 0D_START Data 0F0F
+/*
+   规定数据包格式
+   (NodeName)#END(Data Types)#END(Data Name)#END(Data)#END#EOF
+ */
 
-DATA_TYPES:
-0-int
-1-float
-2-char
-3-string

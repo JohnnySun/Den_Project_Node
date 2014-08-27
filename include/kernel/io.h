@@ -22,7 +22,7 @@ class io
 				String node_name;
 				char byte;
 				String p_name;
-				String p_type;
+				int p_type;
 				int i_data;
 				char c_data;
 				float f_data;

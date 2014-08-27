@@ -1,4 +1,9 @@
-#include "sendpackage.h"
+/*
+   规定数据包格式
+   (NodeName)#END(Data Types)#END(Data Name)#END(Data)#END#EOF
+ */
+#include <den.h>
+#include <include/sendpackage.h>
 
 int spackage::init(String name)
 {

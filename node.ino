@@ -1,14 +1,6 @@
-/*
-   规定数据包格式
-   NodeName 
-   Data Types 
-   Data Name
-   Data
-   (EOF)
- */
 #include <den.h>
 #include <include/dht11.h>
-#include "sendpackage.h"
+#include "include/sendpackage.h"
 #include "include/readserial.h"
 #include "include/ptthread/pt.h"
 

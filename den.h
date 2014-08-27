@@ -9,6 +9,7 @@
 
 #define DEN_VERSION "0.4.1"
 
+#define NODE_NAME "node1"
 #define DHT11PIN 2
 
 #endif
