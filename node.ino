@@ -59,7 +59,7 @@ static int serialread(struct pt *pt)
 				PT_WAIT_UNTIL(pt, reads.read());
 				//read = Serial.read();
 				//Serial.println(read);
-				Serial.println(" thread2\n");
+				Serial.println("Debug:thread2 END\n");
 				//counter2 = 0;
 		}
 		PT_END(pt);

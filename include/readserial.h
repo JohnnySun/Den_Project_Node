@@ -23,8 +23,11 @@
 class readserial : public io
 {
 		public:
-				int read();
 				int readin(int *, char *);
+				int read();
+				int savedata(int *, String *);
+		private:
+				String temp_data;
 };
 #endif
 //

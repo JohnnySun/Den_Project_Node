@@ -17,7 +17,6 @@
 int spackage::init(String name)
 {
 		p_name = name;
-		p_name += "#end";
 		return 0;
 }
 
