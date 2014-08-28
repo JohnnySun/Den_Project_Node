@@ -16,7 +16,7 @@
 #include <WProgram.h>
 #endif
 
-#define READ_SERIAL_VERSION "0.0.1"
+#define READ_SERIAL_VERSION "0.0.5"
 
 #include "include/kernel/io.h"
 
@@ -26,8 +26,10 @@ class readserial : public io
 				int readin(int *, char *);
 				int read();
 				int savedata(int *, String *);
+				int check_sign(char *);
 		private:
 				String temp_data;
+				int counter;
 };
 #endif
 //

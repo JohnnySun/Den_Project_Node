@@ -18,15 +18,16 @@
 #include <WProgram.h>
 #endif
 
-#define IO_VERSION "0.0.1"
+#define IO_VERSION "0.0.2"
 
 
 class io
 {
 		public:
-				virtual int read(){return 0;};
-				virtual int read(int){return 0;};
-				virtual int write(int){return 0;};				
+				io(){emergency = 0;}
+				virtual int read(){return 0;}
+				virtual int read(int){return 0;}
+				virtual int write(int){return 0;}				
 
 				String node_name;
 				char byte;
@@ -35,8 +36,9 @@ class io
 				int i_data;
 				char c_data;
 				float f_data;
-
 				enum type{int_t, char_t, float_t};
+
+				int emergency;
 				
 };
 #endif

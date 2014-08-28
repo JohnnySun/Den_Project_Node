@@ -5,34 +5,29 @@
 	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-*/
+ */
 
 #include "include/readserial.h"
 
 int readserial::read()
 {
-		int counter = 0;
+		counter = 0;
 		if(Serial.available() == 0){
 				return 0;
 		}else{
 				while(byte = Serial.read())
 				{
 						if(byte != '#'){
-							readin(&counter, &byte);
+								readin(&counter, &byte);
 						}else{
+
 								char buffer[3];
 								Serial.readBytes(buffer, 3);
-								if(buffer[0] == 'E' && buffer[1] == 'N' && buffer[2] == 'D'){
-										//数据全部录入temp_data后进行数据转存
-										if(counter++ == 4){
-												savedata(&p_type, &temp_data);
-										}
+								//countinue - 0
+								//break -1
+								if(check_sign(buffer)){
 										continue;
-								}else if(buffer[0] == 'E' && buffer[1] == 'O' && buffer[2] == 'F'){
-										break;
 								}else{
-										node_name = NULL;
-										Serial.println("Data Transfer ERROR");
 										break;
 								}
 						}
@@ -70,7 +65,9 @@ int readserial::readin(int *counter, char *byte)
 						break;
 				case 4:
 						//BREAK，因为counter==4意味着后面是EOF,之所以写，是为了防止#END与#EOF之间出现空格
-						break;	
+						break;
+				case 5:
+						break;
 		}
 }
 int readserial::savedata(int *p_type, String *data)
@@ -89,4 +86,31 @@ int readserial::savedata(int *p_type, String *data)
 						break;
 		}
 		return i;
+}
+
+int readserial::check_sign(char *buffer)
+{
+		if(buffer[0] == 'E' && buffer[1] == 'N' && buffer[2] == 'D'){
+				//数据全部录入temp_data后进行数据转存
+				if(counter++ == 4){
+						savedata(&p_type, &temp_data);
+				}
+				//countinue - 1
+				//break -0
+				return 1;
+		}else if(buffer[0] == 'E' && buffer[1] == 'O' && buffer[2] == 'F'){
+				return 0;
+				//Emergency Event
+		}else if(buffer[0] == 'E' && buffer[1] == 'M' && buffer[2] == 'E'){
+				emergency = 1;
+				//0 is false
+				//1 is true
+				return 1;
+
+		}else{
+				node_name = NULL;
+				Serial.println("Data Transfer ERROR");
+				return 0;
+		}
+		return 0;
 }

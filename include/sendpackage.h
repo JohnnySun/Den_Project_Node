@@ -15,7 +15,7 @@
 #include <WProgram.h>
 #endif
 
-#define SENDPACKAGE_VERSION "0.0.1"
+#define SENDPACKAGE_VERSION "0.0.2"
 
 #include "include/kernel/io.h"
 
