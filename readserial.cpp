@@ -48,11 +48,11 @@ int readserial::readin(int *counter, char *byte)
 						node_name += *byte;
 						break;
 				case 1:
-						if(byte == "48"){
+						if(*byte == 48){
 								p_type = 0;
-						}else if(byte == "49"){
+						}else if(*byte == 49){
 								p_type = 1;
-						}else if(byte == "50"){
+						}else if(*byte == 50){
 								p_type = 2;
 						}
 						//p_type += *byte;
