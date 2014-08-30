@@ -21,13 +21,13 @@ readserial reads;
 
 /*########################################*/
 /*############thread##########################*/
-static int counter1, counter2 = 0;
+static unsigned long counter1 = 0;
 static int send_to_user(struct pt *pt)
 {
 		PT_BEGIN(pt);
 		while(1)
 		{
-				PT_WAIT_UNTIL(pt, counter1==5);
+				PT_WAIT_UNTIL(pt, counter1 == 5000);
 				counter1 = 0;
 				Serial.println("\n");
 
@@ -70,7 +70,7 @@ static struct pt pt1, pt2;
 
 void setup()
 {
-		Serial.begin(9600);
+		Serial.begin(115200);
 		PT_INIT(&pt1);
 		PT_INIT(&pt2);
 }
@@ -79,7 +79,8 @@ void loop()
 { 
 		send_to_user(&pt1);
 		serialread(&pt2);
-		delay(1000);
+		delay(1);
+		//conter steper add 1, 1 is 1ms;
 		counter1++;
 		//counter2++;
 }

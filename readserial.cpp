@@ -19,6 +19,7 @@ int readserial::read()
 				{
 						if(byte != '#'){
 								readin(&counter, &byte);
+								delay(1);
 						}else{
 
 								char buffer[3];
@@ -26,8 +27,10 @@ int readserial::read()
 								//countinue - 0
 								//break -1
 								if(check_sign(buffer)){
+										delay(1);
 										continue;
 								}else{
+										delay(1);
 										break;
 								}
 						}
@@ -36,6 +39,8 @@ int readserial::read()
 				Serial.println("Debug:");
 				Serial.println(node_name);
 				Serial.println(p_type);
+				Serial.println(temp_data);
+				node_name = NULL;
 				//p_name = NULL;
 				return 1;
 		}
@@ -109,6 +114,7 @@ int readserial::check_sign(char *buffer)
 
 		}else{
 				node_name = NULL;
+				//This is Debug massaage, change it when this module complete.
 				Serial.println("Data Transfer ERROR");
 				return 0;
 		}
