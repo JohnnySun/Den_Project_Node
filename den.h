@@ -19,6 +19,8 @@
 #define DEN_VERSION "0.4.1"
 
 #define NODE_NAME "node1"
+#define BAUD_RATE 115200
+#define TRANS_SPEED 1000000/BAUD_RATE
 #define DHT11PIN 2
 
 #endif

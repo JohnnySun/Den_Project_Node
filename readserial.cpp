@@ -7,11 +7,13 @@
 	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
 
+#include "den.h"
 #include "include/readserial.h"
 
 int readserial::read()
 {
 		counter = 0;
+		int transfer_speed = TRANS_SPEED;
 		if(Serial.available() == 0){
 				return 0;
 		}else{
@@ -19,18 +21,16 @@ int readserial::read()
 				{
 						if(byte != '#'){
 								readin(&counter, &byte);
-								delay(1);
+								delayMicroseconds(transfer_speed * 10 + 25);
 						}else{
-
+								delayMicroseconds(transfer_speed * 30 + 25);
 								char buffer[3];
 								Serial.readBytes(buffer, 3);
 								//countinue - 0
 								//break -1
 								if(check_sign(buffer)){
-										delay(1);
 										continue;
 								}else{
-										delay(1);
 										break;
 								}
 						}
