@@ -22,6 +22,7 @@ int readserial::read()
 						if(byte != '#'){
 								readin(&counter, &byte);
 								delayMicroseconds(transfer_speed * 10 + 25);
+//+25 used to offset deviation
 						}else{
 								delayMicroseconds(transfer_speed * 30 + 25);
 								char buffer[3];
